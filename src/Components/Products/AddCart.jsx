@@ -1,4 +1,4 @@
-import { Typography, Grid, CardMedia } from "@mui/material";
+import { Typography, Grid, CardMedia, CardActions, Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -6,13 +6,17 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 
 const AddCart = () => {
-  
+  const dispatch=useDispatch();
+  const cartItem = useSelector((state) => state.rootReducer.cartProd);
+  const handleDelete = (item) => {
+    dispatch({type:"REMOVE_CART_ITEM", payload: item})
+  }
   return (
     <div style={{ marginTop: "48px" }}>
       <Typography variant="h1">Cart Items</Typography>
-      {/* <Grid container spacing={3}>
-        {products.length > 0 &&
-          products.map((item, index) => {
+      <Grid container spacing={3}>
+        {cartItem?.length > 0 &&
+          cartItem?.map((item, index) => {
             return (
               <Grid item xs={3}>
                 <Card
@@ -38,12 +42,17 @@ const AddCart = () => {
                     <Typography gutterBottom variant="h5" component="div">
                       <strong>Price:</strong> {item.price}$
                     </Typography>
+                    <CardActions>
+                      <Button variant="contained" color='error' onClick={()=>handleDelete(item)}>
+                        Delete
+                      </Button>
+                    </CardActions>
                   </CardContent>
                 </Card>
               </Grid>
             );
           })}
-      </Grid> */}
+      </Grid>
     </div>
   );
 };

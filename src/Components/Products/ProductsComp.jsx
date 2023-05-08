@@ -1,4 +1,4 @@
-import { Typography, Grid, CardMedia, Button } from "@mui/material";
+import { Typography, Grid, CardMedia, Button, CardActions } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -9,7 +9,7 @@ import { formatedResult } from "../../Constants/Common";
 const ProductsComp = () => {
   const [products, setProducts] = useState([]);
   const reduxProd = useSelector((state) => state.rootReducer.product);
-  const cartItem = useSelector((state) => state.rootReducer.cartItem);
+  const cartItem = useSelector((state) => state.rootReducer.cartProd);
 
   const dispatch = useDispatch();
   const getProduct = async () => {
@@ -29,6 +29,11 @@ const ProductsComp = () => {
     dispatch({ type: "ALL_CATEGORIES", payload: response.data });
   };
 
+  const handleAddToCart = (item) => {
+    const duplicate = cartItem.some((ele) => ele.id === item.id);
+    if (duplicate) return;
+    dispatch({ type: "ADD_TO_CART", payload: [...cartItem, item] })
+  }
 
   useEffect(() => {
     getProduct();
@@ -56,7 +61,13 @@ const ProductsComp = () => {
                     <Typography gutterBottom variant="h5" component="div">
                       <strong>Title:</strong> {item.title.substr(0, 30)}
                     </Typography>
-                    
+                    <CardActions>
+                      <Button variant="contained"
+                        onClick={() => handleAddToCart(item)}
+                      >
+                        Add to Cart
+                      </Button>
+                    </CardActions>
                   </CardContent>
                 </Card>
               </Grid>

@@ -4,7 +4,8 @@ const initialState = {
   menProd: [],
   womenProd: [],
   jewelProd: [],
-  electronicProd: []
+  electronicProd: [],
+  cartProd: [],
 };
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -20,6 +21,13 @@ export const rootReducer = (state = initialState, action) => {
       return { ...state, jewelProd: action.payload };
     case "ELECTRONIC_PROD":
       return { ...state, electronicProd: action.payload };
+    case "ADD_TO_CART":
+      return { ...state, cartProd: action.payload };
+    case "REMOVE_CART_ITEM":
+      const filtered = state.cartProd.filter(
+        (item) => item.id !== action.payload.id
+      );
+      return { ...state, cartProd: filtered };
   }
   return state;
 };

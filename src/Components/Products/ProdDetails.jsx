@@ -5,8 +5,8 @@ import CardContent from "@mui/material/CardContent";
 import { useLocation } from "react-router-dom";
 
 const ProdDetails = () => {
- const productData = useLocation();
- console.log(productData)
+//  const productData = useLocation();
+//  console.log(productData)
     return (
         <div style={{ marginTop: "48px" }}>
             <Typography variant="h1">Details</Typography>

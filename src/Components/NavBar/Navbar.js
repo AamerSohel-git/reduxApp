@@ -5,7 +5,7 @@ import { Badge } from "@mui/material";
 import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const cartItem = useSelector((state)=> state.rootReducer.cartItem);
+  const cartItem = useSelector((state) => state.rootReducer.cartProd);
   return (
     <div>
       <ul>
@@ -24,7 +24,13 @@ const Navbar = () => {
         <li>
           <NavLink to="/electronic">ELECTRONIC</NavLink>
         </li>
-        
+        <li>
+          <NavLink to="/cart">
+            <Badge badgeContent={cartItem?.length} color="primary">
+              CART
+            </Badge>
+          </NavLink>
+        </li>
       </ul>
     </div>
   );
