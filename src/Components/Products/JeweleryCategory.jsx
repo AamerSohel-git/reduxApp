@@ -7,7 +7,6 @@ import CardContent from "@mui/material/CardContent";
 import { formatedResult } from "../../Constants/Common";
 
 const JeweleryCategory = () => {
-  const jewelCategory = useSelector((state) => state.rootReducer.categories[1]);
   const jewelProducts = useSelector((state) => state.rootReducer.jewelProd);
   const dispatch = useDispatch();
   const [jewelProd, setJewelProd] = useState([]);
@@ -17,7 +16,7 @@ const JeweleryCategory = () => {
       setJewelProd(jewelProducts);
     } else {
       const response = await axios.get(
-        `https://fakestoreapi.com/products/category/${jewelCategory}`
+        `https://fakestoreapi.com/products/category/jewelery`
       );
       dispatch({ type: "JEWEL_PROD", payload: formatedResult(response.data) });
       setJewelProd(formatedResult(response.data));

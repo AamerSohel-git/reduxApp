@@ -7,9 +7,7 @@ import CardContent from "@mui/material/CardContent";
 import { formatedResult } from "../../Constants/Common";
 
 const ElectronicCategory = () => {
-  const electronicCategory = useSelector(
-    (state) => state.rootReducer.categories[0]
-  );
+  
   const electronicProducts = useSelector(
     (state) => state.rootReducer.electronicProd
   );
@@ -21,7 +19,7 @@ const ElectronicCategory = () => {
       setElectronicProd(electronicProducts);
     } else {
       const response = await axios.get(
-        `https://fakestoreapi.com/products/category/${electronicCategory}`
+        `https://fakestoreapi.com/products/category/electronics`
       );
       dispatch({ type: "ELECTRONIC_PROD", payload:formatedResult
       (response.data)});

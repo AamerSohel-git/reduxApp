@@ -7,7 +7,6 @@ import CardContent from "@mui/material/CardContent";
 import { formatedResult } from "../../Constants/Common";
 
 const WomenCategory = () => {
-  const womenCategory = useSelector((state) => state.rootReducer.categories[3]);
   const womenProducts = useSelector((state) => state.rootReducer.womenProd);
   const dispatch = useDispatch();
   const [womenProd, setWomenProd] = useState([]);
@@ -17,7 +16,7 @@ const WomenCategory = () => {
       setWomenProd(womenProducts);
     } else {
       const response = await axios.get(
-        `https://fakestoreapi.com/products/category/${womenCategory}`
+        `https://fakestoreapi.com/products/category/women's clothing`
       );
       dispatch({ type: "WOMEN_PROD", payload: formatedResult(response.data) });
       setWomenProd(formatedResult(response.data));

@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { formatedResult } from "../../Constants/Common";
 
 const MenCategory = () => {
-  const menCategory = useSelector((state) => state.rootReducer.categories[2]);
   const menProducts = useSelector((state) => state.rootReducer.menProd);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,7 +18,7 @@ const MenCategory = () => {
       setMenProd(menProducts);
     } else {
       const response = await axios.get(
-        `https://fakestoreapi.com/products/category/${menCategory}`
+        `https://fakestoreapi.com/products/category/men's clothing`
       );
       dispatch({ type: "MEN_PROD", payload: formatedResult(response.data) });
       setMenProd(formatedResult(response.data));
