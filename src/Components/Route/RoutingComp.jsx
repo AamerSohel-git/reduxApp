@@ -8,6 +8,7 @@ import JeweleryCategory from "../Products/JeweleryCategory";
 import ElectronicCategory from "../Products/ElectronicCategory";
 import AddCart from "../Products/AddCart";
 import ProdDetails from "../Products/ProdDetails";
+import Counter from "../Products/Counter";
 
 const RoutingComp = () => {
   return (
@@ -22,6 +23,7 @@ const RoutingComp = () => {
           <Route path="/electronic" element={<ElectronicCategory/>}/>
           <Route path="/cart" element={<AddCart/>}/>
           <Route path="/details" element={<ProdDetails/>}/>
+          <Route path="/counter" element={<Counter/>}/>
         </Routes>
       </BrowserRouter>
     </div>

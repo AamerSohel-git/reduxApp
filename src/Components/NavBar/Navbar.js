@@ -31,6 +31,9 @@ const Navbar = () => {
             </Badge>
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/counter">COUNTER</NavLink>
+        </li>
       </ul>
     </div>
   );
