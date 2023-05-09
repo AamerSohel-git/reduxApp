@@ -26,13 +26,16 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink to="/cart">
-            <Badge badgeContent={cartItem?.length} color="primary">
+            <Badge badgeContent={cartItem?.length} color="primary" style={{marginTop:-5}}>
               CART
             </Badge>
           </NavLink>
         </li>
         <li>
           <NavLink to="/counter">COUNTER</NavLink>
+        </li>
+        <li>
+          <NavLink to="/todos">TODOS</NavLink>
         </li>
       </ul>
     </div>

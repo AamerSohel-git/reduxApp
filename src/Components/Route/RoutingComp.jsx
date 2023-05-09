@@ -9,6 +9,7 @@ import ElectronicCategory from "../Products/ElectronicCategory";
 import AddCart from "../Products/AddCart";
 import ProdDetails from "../Products/ProdDetails";
 import Counter from "../Products/Counter";
+import ToDoList from "../Products/ToDoList";
 
 const RoutingComp = () => {
   return (
@@ -24,6 +25,7 @@ const RoutingComp = () => {
           <Route path="/cart" element={<AddCart/>}/>
           <Route path="/details" element={<ProdDetails/>}/>
           <Route path="/counter" element={<Counter/>}/>
+          <Route path="/todos" element={<ToDoList/>}/>
         </Routes>
       </BrowserRouter>
     </div>
