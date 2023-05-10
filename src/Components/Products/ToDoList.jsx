@@ -33,24 +33,38 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 const ToDoList = () => {
-  const [text, setText] = useState("")
+  const [todo, setTodo] = useState({
+    todo_desc: "",
+    is_complete: false
+  });
   const dispatch = useDispatch();
-  const todos = useSelector((state)=>state.todoReducer.todos)
+  const todos = useSelector((state) => state.todoReducer.todos)
 
   const handleAdd = () => {
-    dispatch({type:"ADD_TODO", payload:[...todos, text]})
-  }
+    if (!todo.todo_desc.trim()) return;
+    dispatch({ type: "ADD_TODO", payload: [...todos, todo] })
+    setTodo({ ...todo, todo_desc: "" })
+  };
+
+  const handleDeleteTask = (selectedTodo) => {
+    dispatch({ type: "DELETE_TODO", payload: selectedTodo })
+  };
+
+  const handleCompleteTask = (selectedTodo) => {
+    dispatch({ type: "COMPLETE_TODO", payload: selectedTodo })
+  };
+
   return (
     <div style={{ marginTop: "100px" }}>
       <Typography variant="h3">TODO</Typography>
       <TextField
         id="outlined-controlled"
         label="Todo description"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        value={todo.todo_desc}
+        onChange={(e) => setTodo({ ...todo, todo_desc: e.target.value })}
       />{" "}
       <Button variant="contained" style={{ height: "54px" }}
-      onClick={handleAdd}
+        onClick={handleAdd}
       >Add Task</Button>
       <br />
       <br />
@@ -68,11 +82,18 @@ const ToDoList = () => {
             {todos?.map((row, index) => (
               <StyledTableRow key={index}>
                 <StyledTableCell component="th" scope="row">
-                  {row}
+                  {row.todo_desc}
                 </StyledTableCell>
                 <StyledTableCell align="right">
-                  <Button variant="contained">Delete</Button>{" "}
-                  <Button variant="contained">Complete</Button>
+                  {row.is_complete ? (
+                    <Button variant="contained" color="success">Completed</Button>
+                  ) : (
+                    <>
+                      <Button variant="contained" onClick={() => handleDeleteTask(row)}>Delete</Button>{" "}
+                      <Button variant="contained" onClick={() => handleCompleteTask(row)}>Complete</Button>
+                    </>
+
+                  )}
                 </StyledTableCell>
 
               </StyledTableRow>
