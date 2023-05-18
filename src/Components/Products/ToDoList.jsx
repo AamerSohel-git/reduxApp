@@ -95,7 +95,6 @@ const ToDoList = () => {
 
                   )}
                 </StyledTableCell>
-
               </StyledTableRow>
             ))}
           </TableBody>

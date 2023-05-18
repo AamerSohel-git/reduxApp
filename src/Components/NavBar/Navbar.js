@@ -2,10 +2,14 @@ import React from "react";
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
 import { Badge } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
   const cartItem = useSelector((state) => state.rootReducer.cartProd);
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch({ type: "REMOVE_TOKEN", payload: "" });
+  };
   return (
     <div>
       <ul>
@@ -26,7 +30,11 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink to="/cart">
-            <Badge badgeContent={cartItem?.length} color="primary" style={{marginTop:-5}}>
+            <Badge
+              badgeContent={cartItem?.length}
+              color="primary"
+              style={{ marginTop: -5 }}
+            >
               CART
             </Badge>
           </NavLink>
@@ -36,6 +44,11 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink to="/todos">TODOS</NavLink>
+        </li>
+        <li style={{ float: "right" }}>
+          <NavLink to="/about" onClick={handleLogout}>
+            Logout
+          </NavLink>
         </li>
       </ul>
     </div>
